@@ -9,22 +9,48 @@
 import UIKit
 
 class ExpenseViewController: UIViewController {
-
+    
+    var expenseBrain = ExpenseBrain()
+    var total = 0.0
+    
+    @IBOutlet weak var expenseTableView: UITableView!
+    @IBOutlet weak var totalLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationItem.backBarButtonItem?.title = "Log Out"
+        expenseTableView.dataSource = self
+        expenseTableView.delegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        totalLabel.text = "Total: \(expenseBrain.getExpensesTotal())"
     }
-    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ShowExpenseViewController {
+            let indexPath = expenseTableView.indexPathForSelectedRow
+            destination.expense = expenseBrain.expenses[indexPath!.row]
+        }
+    }
+}
 
+extension ExpenseViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return expenseBrain.expenses.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath)
+        cell.textLabel?.text = expenseBrain.expenses[indexPath.row].title
+        cell.detailTextLabel?.text = String(expenseBrain.expenses[indexPath.row].amount)
+        return cell
+    }
+}
+
+extension ExpenseViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: K.showExpenseSegue, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

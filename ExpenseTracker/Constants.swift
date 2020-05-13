@@ -6,4 +6,9 @@
 //  Copyright © 2020 eli heineman. All rights reserved.
 //
 
-import Foundation
+struct K {
+    static let logInSegue = "LogInToExpense"
+    static let registerSegue = "RegisterToExpense"
+    static let cellIdentifier = "ExpenseCell"
+    static let showExpenseSegue = "ExpenseToShowExpense"
+}

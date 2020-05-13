@@ -17,6 +17,9 @@ class RegisterViewController: UIViewController {
     }
     
 
+    @IBAction func registerPressed(_ sender: Any) {
+        performSegue(withIdentifier: K.registerSegue, sender: self)
+    }
     /*
     // MARK: - Navigation
 
