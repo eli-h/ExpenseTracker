@@ -4,9 +4,10 @@ target 'ExpenseTracker' do
   use_frameworks!
 
   # Pods for ExpenseTracker
+  pod 'SQLite.swift', '~> 0.12.0'
 
   target 'ExpenseTrackerTests' do
-    pod 'SQLite.swift', '~> 0.12.0'
+    
   end
 
 end

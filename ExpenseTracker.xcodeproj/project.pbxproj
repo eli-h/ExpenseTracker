@@ -3,20 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2029919A31D31C4CA1F4B6AA /* Pods_ExpenseTracker_ExpenseTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A65445F9030F00B61D290EE8 /* Pods_ExpenseTracker_ExpenseTrackerTests.framework */; };
 		4BAFA261EBFA109875881E91 /* Pods_ExpenseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C0F729E0B91C05A8C01C5D9 /* Pods_ExpenseTracker.framework */; };
+		CD6046A7246CC1900082FC7F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6046A6246CC1900082FC7F /* DatabaseManager.swift */; };
+		CD6046A9246CC41A0082FC7F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6046A8246CC41A0082FC7F /* SQLite.framework */; };
 		CDFD462B246C541300F741D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD462A246C541300F741D1 /* AppDelegate.swift */; };
 		CDFD462D246C541300F741D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD462C246C541300F741D1 /* SceneDelegate.swift */; };
 		CDFD462F246C541300F741D1 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD462E246C541300F741D1 /* RootViewController.swift */; };
 		CDFD4634246C541400F741D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDFD4633246C541400F741D1 /* Assets.xcassets */; };
 		CDFD4637246C541400F741D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFD4635246C541400F741D1 /* LaunchScreen.storyboard */; };
 		CDFD4642246C541400F741D1 /* ExpenseTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD4641246C541400F741D1 /* ExpenseTrackerTests.swift */; };
-		CDFD464E246C563200F741D1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD464D246C563200F741D1 /* LogInViewController.swift */; };
-		CDFD4650246C5BA700F741D1 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD464F246C5BA700F741D1 /* RegisterViewController.swift */; };
 		CDFD4652246C5C2200F741D1 /* ExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD4651246C5C2200F741D1 /* ExpenseViewController.swift */; };
 		CDFD4654246C5CB400F741D1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD4653246C5CB400F741D1 /* Constants.swift */; };
 		CDFD4657246C618500F741D1 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD4656246C618500F741D1 /* Expense.swift */; };
@@ -44,6 +44,8 @@
 		9354A788BF7AF3547BDA8D6E /* Pods-ExpenseTracker-ExpenseTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTracker-ExpenseTrackerTests.release.xcconfig"; path = "Target Support Files/Pods-ExpenseTracker-ExpenseTrackerTests/Pods-ExpenseTracker-ExpenseTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 		9FBCAE8DA454C7B24FD28845 /* Pods-ExpenseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTracker.release.xcconfig"; path = "Target Support Files/Pods-ExpenseTracker/Pods-ExpenseTracker.release.xcconfig"; sourceTree = "<group>"; };
 		A65445F9030F00B61D290EE8 /* Pods_ExpenseTracker_ExpenseTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTracker_ExpenseTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD6046A6246CC1900082FC7F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		CD6046A8246CC41A0082FC7F /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDFD4627246C541300F741D1 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDFD462A246C541300F741D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDFD462C246C541300F741D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,8 +56,6 @@
 		CDFD463D246C541400F741D1 /* ExpenseTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDFD4641246C541400F741D1 /* ExpenseTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerTests.swift; sourceTree = "<group>"; };
 		CDFD4643246C541400F741D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CDFD464D246C563200F741D1 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		CDFD464F246C5BA700F741D1 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CDFD4651246C5C2200F741D1 /* ExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewController.swift; sourceTree = "<group>"; };
 		CDFD4653246C5CB400F741D1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CDFD4656246C618500F741D1 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -71,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD6046A9246CC41A0082FC7F /* SQLite.framework in Frameworks */,
 				4BAFA261EBFA109875881E91 /* Pods_ExpenseTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,17 +97,27 @@
 				5EE25AA958CE8A04F5A0857E /* Pods-ExpenseTracker-ExpenseTrackerTests.debug.xcconfig */,
 				9354A788BF7AF3547BDA8D6E /* Pods-ExpenseTracker-ExpenseTrackerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		AEB6D3C4CE8937EA6A65D9F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD6046A8246CC41A0082FC7F /* SQLite.framework */,
 				6C0F729E0B91C05A8C01C5D9 /* Pods_ExpenseTracker.framework */,
 				A65445F9030F00B61D290EE8 /* Pods_ExpenseTracker_ExpenseTrackerTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD6046A5246CC1770082FC7F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CDFD4656246C618500F741D1 /* Expense.swift */,
+				CDFD465C246C77A800F741D1 /* ExpenseBrain.swift */,
+				CD6046A6246CC1900082FC7F /* DatabaseManager.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		CDFD461E246C541300F741D1 = {
@@ -134,8 +145,7 @@
 			children = (
 				CDFD462A246C541300F741D1 /* AppDelegate.swift */,
 				CDFD462C246C541300F741D1 /* SceneDelegate.swift */,
-				CDFD4656246C618500F741D1 /* Expense.swift */,
-				CDFD465C246C77A800F741D1 /* ExpenseBrain.swift */,
+				CD6046A5246CC1770082FC7F /* Models */,
 				CDFD4655246C605500F741D1 /* Controllers */,
 				CDFD464C246C542200F741D1 /* Views */,
 				CDFD4633246C541400F741D1 /* Assets.xcassets */,
@@ -167,8 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				CDFD462E246C541300F741D1 /* RootViewController.swift */,
-				CDFD464D246C563200F741D1 /* LogInViewController.swift */,
-				CDFD464F246C5BA700F741D1 /* RegisterViewController.swift */,
 				CDFD4651246C5C2200F741D1 /* ExpenseViewController.swift */,
 				CDFD465A246C709F00F741D1 /* AddExpenseViewController.swift */,
 				CDFD465E246C7B5B00F741D1 /* ShowExpenseViewController.swift */,
@@ -187,6 +195,7 @@
 				CDFD4623246C541300F741D1 /* Sources */,
 				CDFD4624246C541300F741D1 /* Frameworks */,
 				CDFD4625246C541300F741D1 /* Resources */,
+				CA7FB7CACDAC6C0FF2650675 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -337,6 +346,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExpenseTracker-ExpenseTrackerTests/Pods-ExpenseTracker-ExpenseTrackerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CA7FB7CACDAC6C0FF2650675 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExpenseTracker/Pods-ExpenseTracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExpenseTracker/Pods-ExpenseTracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExpenseTracker/Pods-ExpenseTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -346,12 +372,11 @@
 			files = (
 				CDFD4657246C618500F741D1 /* Expense.swift in Sources */,
 				CDFD465D246C77A800F741D1 /* ExpenseBrain.swift in Sources */,
-				CDFD464E246C563200F741D1 /* LogInViewController.swift in Sources */,
-				CDFD4650246C5BA700F741D1 /* RegisterViewController.swift in Sources */,
 				CDFD462F246C541300F741D1 /* RootViewController.swift in Sources */,
 				CDFD465F246C7B5B00F741D1 /* ShowExpenseViewController.swift in Sources */,
 				CDFD465B246C709F00F741D1 /* AddExpenseViewController.swift in Sources */,
 				CDFD462B246C541300F741D1 /* AppDelegate.swift in Sources */,
+				CD6046A7246CC1900082FC7F /* DatabaseManager.swift in Sources */,
 				CDFD4654246C5CB400F741D1 /* Constants.swift in Sources */,
 				CDFD462D246C541300F741D1 /* SceneDelegate.swift in Sources */,
 				CDFD4652246C5C2200F741D1 /* ExpenseViewController.swift in Sources */,
@@ -544,7 +569,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5EE25AA958CE8A04F5A0857E /* Pods-ExpenseTracker-ExpenseTrackerTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4ACW8892N5;
@@ -567,7 +592,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9354A788BF7AF3547BDA8D6E /* Pods-ExpenseTracker-ExpenseTrackerTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4ACW8892N5;
