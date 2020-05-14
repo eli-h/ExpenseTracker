@@ -406,7 +406,7 @@
                     <connections>
                         <outlet property="categoryTextField" destination="GXY-s6-lbk" id="BaV-Rf-sPs"/>
                         <outlet property="fromDateTextField" destination="O44-Fb-d0r" id="5OV-h6-Yl4"/>
-                        <outlet property="toDateTextField" destination="GXY-s6-lbk" id="RxU-dv-enz"/>
+                        <outlet property="toDateTextField" destination="Y9a-4i-vdO" id="4pY-BM-QgI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6b-Yg-bxf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

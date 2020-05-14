@@ -129,7 +129,7 @@ extension AddExpenseViewController: UITextFieldDelegate {
             var formattedNum = ""
             
             if let num = textField.text {
-                numDouble = Double(num)!
+                numDouble = Double(num) ?? 0.0
                 formattedNum = String(format: "%.2f", numDouble)
             }
             

@@ -26,7 +26,8 @@ class FilterViewController: UIViewController {
     var newCategories: [String] = []
     var datePickerDate = Date().timeIntervalSince1970
     
-    var datePicker: UIDatePicker?
+    var fromDatePicker: UIDatePicker?
+    var toDatePicker: UIDatePicker?
     var categoryPicker = UIPickerView()
     var expenseBrain = ExpenseBrain()
     
@@ -37,28 +38,43 @@ class FilterViewController: UIViewController {
         toDateTextField.delegate = self
 
         //Set Up Date Picker
-        datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .date
-        datePicker?.addTarget(self, action: #selector(handleDateChange(datePicker:)), for: .valueChanged)
+        fromDatePicker = UIDatePicker()
+        fromDatePicker?.datePickerMode = .date
+        fromDatePicker?.addTarget(self, action: #selector(handleDateChange(datePicker:)), for: .valueChanged)
+        fromDatePicker?.maximumDate = Date(timeIntervalSince1970: toDate)
         
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
+        toDatePicker = UIDatePicker()
+        toDatePicker?.datePickerMode = .date
+        toDatePicker?.addTarget(self, action: #selector(handleDateChange(datePicker:)), for: .valueChanged)
+        toDatePicker?.minimumDate = Date(timeIntervalSince1970: fromDate)
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneTapped(gesture:)))
-        let addButton = UIBarButtonItem(title: "Select", style: UIBarButtonItem.Style.plain, target: self, action: #selector(selectTapped(gesture:)))
-        toolBar.setItems([doneButton, addButton], animated: true)
-        toolBar.isUserInteractionEnabled = true
+        let dateToolBar = UIToolbar()
+        dateToolBar.sizeToFit()
         
-        fromDateTextField.inputAccessoryView = toolBar
-        fromDateTextField.inputView = datePicker
-        toDateTextField.inputAccessoryView = toolBar
-        toDateTextField.inputView = datePicker
+        let categoryToolBar = UIToolbar()
+        categoryToolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped(gesture:)))
+        
+        let selectButton = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectTapped(gesture:)))
+        
+        dateToolBar.setItems([doneButton], animated: true)
+        categoryToolBar.setItems([doneButton, selectButton], animated: true)
+        
+        dateToolBar.isUserInteractionEnabled = true
+        categoryToolBar.isUserInteractionEnabled = true
+        
+        fromDateTextField.inputView = fromDatePicker
+        toDateTextField.inputView = toDatePicker
+
+        fromDateTextField.inputAccessoryView = dateToolBar
+        toDateTextField.inputAccessoryView = dateToolBar
         
         //Set Up Category Picker
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
         
-        categoryTextField.inputAccessoryView = toolBar
+        categoryTextField.inputAccessoryView = categoryToolBar
         categoryTextField.inputView = categoryPicker
     }
     
@@ -127,9 +143,11 @@ extension FilterViewController: UITextFieldDelegate {
         if textField.tag == 0 {
             fromDate = datePickerDate
             fromDateTextField.text = expenseBrain.formatDate(date: fromDate)
+            toDatePicker?.minimumDate = Date(timeIntervalSince1970: fromDate)
         } else {
             toDate = datePickerDate
             toDateTextField.text = expenseBrain.formatDate(date: toDate)
+            fromDatePicker?.maximumDate = Date(timeIntervalSince1970: toDate)
         }
         
         return true
