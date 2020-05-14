@@ -18,12 +18,12 @@ class AddExpenseViewController: UIViewController {
     private var datePicker: UIDatePicker?
     private var categoryPicker = UIPickerView()
     
-    var expense = Expense(title: "", amount: 0.0, date: Date(), category: "", notes: "")
+    var expense = Expense(title: "", amount: 0.0, date: Date().timeIntervalSince1970, category: "", notes: "")
     var expenseBrain = ExpenseBrain()
     
     var newTitle = ""
     var newAmount = ""
-    var newDate = Date()
+    var newDate = Date().timeIntervalSince1970
     var newCategory = ""
     var newNote = ""
     
@@ -68,16 +68,18 @@ class AddExpenseViewController: UIViewController {
     }
     
     @objc func handleDateChange(datePicker: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyy"
-        newDate = datePicker.date
-        dateTextField.text = dateFormatter.string(from: datePicker.date)
+        newDate = datePicker.date.timeIntervalSince1970
+        dateTextField.text = expenseBrain.formatDate(date: newDate)
     }
     
     @IBAction func addExpensePressed(_ sender: Any) {
         if newAmount != "" && newTitle != "" && newCategory != "" {
             let newAmountDouble = Double(newAmount)!
             expense = Expense(title: newTitle, amount: newAmountDouble, date: newDate, category: newCategory, notes: newNote)
+            
+            let databaseManager = DatabaseManager()
+            databaseManager.addExpenseToDb(path: K.dbFilePath, expense: expense)
+            
             dismiss(animated: true, completion: nil)
         }
     }

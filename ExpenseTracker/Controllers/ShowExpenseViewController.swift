@@ -15,27 +15,21 @@ class ShowExpenseViewController: UIViewController {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var notesLabel: UILabel!
     
-    var expense = Expense(title: "Default", amount: 0.0, date: Date(), category: "Electronics", notes: "This is the default expense")
+    var expense = Expense(title: "Default", amount: 0.0, date: Date().timeIntervalSince1970, category: "Electronics", notes: "This is the default expense")
+    var expenseBrain = ExpenseBrain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = "Title: \(expense.title)"
-        amountLabel.text = "Amount: \(expense.amount)"
-        dateLabel.text = "Date: \(expense.date)"
-        categoryLabel.text = "Category: \(expense.category)"
-        notesLabel.text = "Notes: \(expense.notes)"
-        // Do any additional setup after loading the view.
+        updateUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func updateUI() {
+        let formattedDate = expenseBrain.formatDate(date: expense.date)
+        
+        titleLabel.text = "Title: \(expense.title)"
+        amountLabel.text = "Amount: \(expense.amount)"
+        dateLabel.text = "Date: \(formattedDate)"
+        categoryLabel.text = "Category: \(expense.category)"
+        notesLabel.text = "Notes: \(expense.notes)"
     }
-    */
-
 }

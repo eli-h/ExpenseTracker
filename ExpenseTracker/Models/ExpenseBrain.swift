@@ -10,11 +10,11 @@ import Foundation
 
 struct ExpenseBrain {
     var expenses: [Expense] = [
-        Expense(title: "Mario Party", amount: 90.0, date: Date(), category: "Electronics", notes: "fun game"),
-        Expense(title: "Shell Gas", amount: 20.0, date: Date(), category: "Fuel", notes: "Half tank"),
-        Expense(title: "Shish", amount: 12.0, date: Date(), category: "Food", notes: "Tasty"),
-        Expense(title: "Rolex", amount: 9000.0, date: Date(), category: "Shopping", notes: "bougie"),
-        Expense(title: "Netflix", amount: 10.0, date: Date(), category: "Subscriptions", notes: "friends and the office")
+        Expense(title: "Mario Party", amount: 90.0, date: Date().timeIntervalSince1970, category: "Electronics", notes: "fun game"),
+        Expense(title: "Shell Gas", amount: 20.0, date: Date().timeIntervalSince1970, category: "Fuel", notes: "Half tank"),
+        Expense(title: "Shish", amount: 12.0, date: Date().timeIntervalSince1970, category: "Food", notes: "Tasty"),
+        Expense(title: "Rolex", amount: 9000.0, date: Date().timeIntervalSince1970, category: "Shopping", notes: "bougie"),
+        Expense(title: "Netflix", amount: 10.0, date: Date().timeIntervalSince1970, category: "Subscriptions", notes: "friends and the office")
     ]
     
     let categories: [String] = ["Fuel", "Food", "Shopping", "Electronics", "Subscriptions"]
@@ -29,7 +29,17 @@ struct ExpenseBrain {
         return String(format: "%.2f", total)
     }
     
-    mutating func addExpense(_ expense: Expense) {
-        expenses.append(expense)
+    func formatDate(date: Double) -> String {
+        let date = Date(timeIntervalSince1970: date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "dd/MM/yyy"
+        
+        return dateFormatter.string(from: date)
+    }
+    
+    mutating func updateExpensesFromDb() {
+        let databaseManager = DatabaseManager()
+        expenses = databaseManager.getExpensesFromDb(path: K.dbFilePath)
     }
 }

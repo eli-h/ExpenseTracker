@@ -18,12 +18,12 @@ class ExpenseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.backBarButtonItem?.title = "Log Out"
         expenseTableView.dataSource = self
         expenseTableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        expenseBrain.updateExpensesFromDb()
         totalLabel.text = "Total: \(expenseBrain.getExpensesTotal())"
     }
     
