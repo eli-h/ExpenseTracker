@@ -18,17 +18,28 @@ class ExpenseTrackerTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    var testExpenses: [Expense] = [
+        Expense(title: "Mario Party", amount: 90.0, date: 1488914132.0, category: "Electronics", notes: "fun game"),
+        Expense(title: "Shell Gas", amount: 20.0, date: 1520450132.0, category: "Fuel", notes: "Half tank"),
+        Expense(title: "Shish", amount: 12.0, date: Date().timeIntervalSince1970, category: "Food", notes: "Tasty"),
+        Expense(title: "Rolex", amount: 9000.0, date: Date().timeIntervalSince1970, category: "Shopping", notes: "bougie"),
+        Expense(title: "Netflix", amount: 10.0, date: Date().timeIntervalSince1970, category: "Subscriptions", notes: "friends and the office")
+    ]
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testGetExpensesTotal() {
+        var expenseBrain = ExpenseBrain()
+        expenseBrain.filteredExpenses = testExpenses
+        let total = expenseBrain.getExpensesTotal()
+        XCTAssert(total == "9132.00", "Total was calulated improperly")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testFilterExpenses() {
+        var expenseBrain = ExpenseBrain()
+        expenseBrain.allExpenses = testExpenses
+        let filters = Filters(fromDate: 1488914131.0, toDate: 1520450133.0, categories: ["Electronics","Fuel"])
+        expenseBrain.updateFilters(newFilters: filters)
+        expenseBrain.filterExpenses()
+        XCTAssert(expenseBrain.filteredExpenses.count == 2, "returned incorrect number of expenses")
     }
-
 }
