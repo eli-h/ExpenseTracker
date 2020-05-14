@@ -9,8 +9,10 @@ import Foundation
 
 struct K {
     static let goToExpenseSegue = "goToExpense"
+    static let goToFiltersSegue = "goToFilters"
     static let cellIdentifier = "ExpenseCell"
     static let showExpenseSegue = "ExpenseToShowExpense"
+    static let updateExpenseTableNotification = "updateExpenseTable"
     static let dbFilePath = NSSearchPathForDirectoriesInDomains(
         .documentDirectory, .userDomainMask, true
     ).first!

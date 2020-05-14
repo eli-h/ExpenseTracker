@@ -13,6 +13,7 @@ class RootViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passcodeTextField: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
     
     var passcodeCount: Int = 0
     let databaseManager = DatabaseManager()
@@ -58,12 +59,18 @@ class RootViewController: UIViewController {
         if passcodeCount == 0 {
             if let newPasscode = passcodeTextField.text {
                 databaseManager.createPassword(path: K.dbFilePath, newPasscode: newPasscode)
+                passcodeTextField.text = ""
                 self.performSegue(withIdentifier: K.goToExpenseSegue, sender: self)
             }
         } else {
             let validLogin = databaseManager.validateLogin(path: K.dbFilePath, enteredPasscode: passcodeTextField.text ?? "")
             if validLogin {
+                passcodeTextField.text = ""
+                errorLabel.isHidden = true
+
                 self.performSegue(withIdentifier: K.goToExpenseSegue, sender: self)
+            } else {
+                errorLabel.isHidden = false
             }
         }
     }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class ExpenseViewController: UIViewController {
     
     var expenseBrain = ExpenseBrain()
@@ -20,30 +22,42 @@ class ExpenseViewController: UIViewController {
         super.viewDidLoad()
         expenseTableView.dataSource = self
         expenseTableView.delegate = self
+        updateExpenseTable()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateExpenseTable), name: NSNotification.Name(rawValue: K.updateExpenseTableNotification), object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        expenseBrain.updateExpensesFromDb()
+    @objc func updateExpenseTable() {
+        expenseBrain.updateAllExpensesFromDb()
+        expenseBrain.filterExpenses()
         totalLabel.text = "Total: \(expenseBrain.getExpensesTotal())"
+        expenseTableView.reloadData()
+    }
+    
+    @IBAction func filterButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: K.goToFiltersSegue, sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ShowExpenseViewController {
             let indexPath = expenseTableView.indexPathForSelectedRow
-            destination.expense = expenseBrain.expenses[indexPath!.row]
+            destination.expense = expenseBrain.filteredExpenses[indexPath!.row]
+        }
+        
+        if let destination = segue.destination as? FilterViewController {
+            destination.delegate = self
         }
     }
 }
 
 extension ExpenseViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expenseBrain.expenses.count
+        return expenseBrain.filteredExpenses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath)
-        cell.textLabel?.text = expenseBrain.expenses[indexPath.row].title
-        cell.detailTextLabel?.text = String(expenseBrain.expenses[indexPath.row].amount)
+        cell.textLabel?.text = expenseBrain.filteredExpenses[indexPath.row].title
+        cell.detailTextLabel?.text = String(expenseBrain.filteredExpenses[indexPath.row].amount)
         return cell
     }
 }
@@ -52,5 +66,12 @@ extension ExpenseViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: K.showExpenseSegue, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ExpenseViewController: FilterViewControllerDelegate {
+    func didUpdateFilters(filters: Filters) {
+        print("notification from filter VC")
+        expenseBrain.updateFilters(newFilters: filters)
     }
 }

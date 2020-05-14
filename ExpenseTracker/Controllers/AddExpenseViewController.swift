@@ -14,6 +14,7 @@ class AddExpenseViewController: UIViewController {
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var notesTextField: UITextField!
     
     private var datePicker: UIDatePicker?
     private var categoryPicker = UIPickerView()
@@ -33,6 +34,7 @@ class AddExpenseViewController: UIViewController {
         //Set Up Text Fields
         titleTextField.delegate = self
         amountTextField.delegate = self
+        notesTextField.delegate = self
         configureTapGesture()
         
         //Set Up Date Picker
@@ -80,6 +82,7 @@ class AddExpenseViewController: UIViewController {
             let databaseManager = DatabaseManager()
             databaseManager.addExpenseToDb(path: K.dbFilePath, expense: expense)
             
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: K.updateExpenseTableNotification), object: nil)
             dismiss(animated: true, completion: nil)
         }
     }

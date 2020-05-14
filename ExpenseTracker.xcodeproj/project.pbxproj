@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2029919A31D31C4CA1F4B6AA /* Pods_ExpenseTracker_ExpenseTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A65445F9030F00B61D290EE8 /* Pods_ExpenseTracker_ExpenseTrackerTests.framework */; };
 		4BAFA261EBFA109875881E91 /* Pods_ExpenseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C0F729E0B91C05A8C01C5D9 /* Pods_ExpenseTracker.framework */; };
+		CD1E0499246CFE0500EB4DCC /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E0498246CFE0500EB4DCC /* FilterViewController.swift */; };
+		CD1E049B246D14D200EB4DCC /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1E049A246D14D200EB4DCC /* Filters.swift */; };
 		CD6046A7246CC1900082FC7F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6046A6246CC1900082FC7F /* DatabaseManager.swift */; };
 		CD6046A9246CC41A0082FC7F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6046A8246CC41A0082FC7F /* SQLite.framework */; };
 		CDFD462B246C541300F741D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD462A246C541300F741D1 /* AppDelegate.swift */; };
@@ -44,6 +46,8 @@
 		9354A788BF7AF3547BDA8D6E /* Pods-ExpenseTracker-ExpenseTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTracker-ExpenseTrackerTests.release.xcconfig"; path = "Target Support Files/Pods-ExpenseTracker-ExpenseTrackerTests/Pods-ExpenseTracker-ExpenseTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 		9FBCAE8DA454C7B24FD28845 /* Pods-ExpenseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTracker.release.xcconfig"; path = "Target Support Files/Pods-ExpenseTracker/Pods-ExpenseTracker.release.xcconfig"; sourceTree = "<group>"; };
 		A65445F9030F00B61D290EE8 /* Pods_ExpenseTracker_ExpenseTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTracker_ExpenseTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD1E0498246CFE0500EB4DCC /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		CD1E049A246D14D200EB4DCC /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		CD6046A6246CC1900082FC7F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		CD6046A8246CC41A0082FC7F /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDFD4627246C541300F741D1 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +120,7 @@
 				CDFD4656246C618500F741D1 /* Expense.swift */,
 				CDFD465C246C77A800F741D1 /* ExpenseBrain.swift */,
 				CD6046A6246CC1900082FC7F /* DatabaseManager.swift */,
+				CD1E049A246D14D200EB4DCC /* Filters.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				CDFD4651246C5C2200F741D1 /* ExpenseViewController.swift */,
 				CDFD465A246C709F00F741D1 /* AddExpenseViewController.swift */,
 				CDFD465E246C7B5B00F741D1 /* ShowExpenseViewController.swift */,
+				CD1E0498246CFE0500EB4DCC /* FilterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -375,9 +381,11 @@
 				CDFD462F246C541300F741D1 /* RootViewController.swift in Sources */,
 				CDFD465F246C7B5B00F741D1 /* ShowExpenseViewController.swift in Sources */,
 				CDFD465B246C709F00F741D1 /* AddExpenseViewController.swift in Sources */,
+				CD1E0499246CFE0500EB4DCC /* FilterViewController.swift in Sources */,
 				CDFD462B246C541300F741D1 /* AppDelegate.swift in Sources */,
 				CD6046A7246CC1900082FC7F /* DatabaseManager.swift in Sources */,
 				CDFD4654246C5CB400F741D1 /* Constants.swift in Sources */,
+				CD1E049B246D14D200EB4DCC /* Filters.swift in Sources */,
 				CDFD462D246C541300F741D1 /* SceneDelegate.swift in Sources */,
 				CDFD4652246C5C2200F741D1 /* ExpenseViewController.swift in Sources */,
 			);
