@@ -27,7 +27,7 @@ class AddExpenseViewController: UIViewController {
     var newDate = Date().timeIntervalSince1970
     var newCategories: [String] = []
     var newNote = ""
-    var currentCategoryValue = ""
+    var currentCategoryValue = "Fuel"
     
     override func viewDidLoad() {
         super.viewDidLoad()

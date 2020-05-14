@@ -22,7 +22,7 @@ class FilterViewController: UIViewController {
     
     var fromDate = 0.0
     var toDate = Date().timeIntervalSince1970
-    var currentCategoryValue = ""
+    var currentCategoryValue = "Fuel"
     var newCategories: [String] = []
     var datePickerDate = Date().timeIntervalSince1970
     
@@ -89,7 +89,9 @@ class FilterViewController: UIViewController {
     @IBAction func filterButtonPressed(_ sender: UIButton) {
         let filters = Filters(fromDate: fromDate, toDate: toDate, categories: newCategories)
         delegate?.didUpdateFilters(filters: filters)
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: K.updateExpenseTableNotification), object: nil)
+        
         dismiss(animated: true, completion: nil)
     }
     
