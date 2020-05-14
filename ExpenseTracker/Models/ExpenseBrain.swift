@@ -52,7 +52,8 @@ struct ExpenseBrain {
         }
         
         for expense in expenses {
-            let intersection = Set([expense.category]).intersection(Set(categories))
+            let expenseCategories = expense.category.components(separatedBy: ",")
+            let intersection = Set(expenseCategories).intersection(Set(categories))
             if intersection.count > 0 {
                 results.append(expense)
             }
