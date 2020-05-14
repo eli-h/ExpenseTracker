@@ -52,6 +52,12 @@ class DatabaseManager {
         print("password successfully created")
     }
     
+    func getPasscodeCount(path: String) -> Int {
+        let db = try! Connection("\(path)/db.sqlite3")
+        let passcode = Table("passcode")
+        return try! db.scalar(passcode.count)
+    }
+    
     func validateLogin(path: String, enteredPasscode: String) -> Bool {
         let db = try! Connection("\(path)/db.sqlite3")
         

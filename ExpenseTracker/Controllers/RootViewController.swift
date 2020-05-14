@@ -21,9 +21,7 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let db = databaseManager.connectToDb(path: K.dbFilePath)
-        let passcode = Table("passcode")
-        passcodeCount = try! db.scalar(passcode.count)
+        passcodeCount = databaseManager.getPasscodeCount(path: K.dbFilePath)
         
         if(passcodeCount == 0) {
             showPasswordAlert()
@@ -35,6 +33,7 @@ class RootViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        passcodeCount = databaseManager.getPasscodeCount(path: K.dbFilePath)
         if(passcodeCount == 0) {
             showPasswordAlert()
         }
