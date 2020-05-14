@@ -17,7 +17,7 @@ class AddExpenseViewController: UIViewController {
     @IBOutlet weak var notesTextField: UITextField!
     
     private var datePicker: UIDatePicker?
-    private var categoryPicker = UIPickerView()
+    private var categoryPicker: UIPickerView?
     
     var expense = Expense(title: "", amount: 0.0, date: Date().timeIntervalSince1970, category: "", notes: "")
     var expenseBrain = ExpenseBrain()
@@ -43,22 +43,32 @@ class AddExpenseViewController: UIViewController {
         datePicker?.datePickerMode = .date
         datePicker?.addTarget(self, action: #selector(handleDateChange(datePicker:)), for: .valueChanged)
         
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
+        let dateToolBar = UIToolbar()
+        dateToolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneTapped(gesture:)))
-        let addButton = UIBarButtonItem(title: "Select", style: UIBarButtonItem.Style.plain, target: self, action: #selector(selectTapped(gesture:)))
-        toolBar.setItems([doneButton, addButton], animated: true)
-        toolBar.isUserInteractionEnabled = true
+        let dateDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneTapped(gesture:)))
         
-        dateTextField.inputAccessoryView = toolBar
+        dateToolBar.setItems([dateDoneButton], animated: true)
+        dateToolBar.isUserInteractionEnabled = true
+        
+        dateTextField.inputAccessoryView = dateToolBar
         dateTextField.inputView = datePicker
         
         //Set Up Category Picker
-        categoryPicker.delegate = self
-        categoryPicker.dataSource = self
+        categoryPicker = UIPickerView()
+        categoryPicker?.delegate = self
+        categoryPicker?.dataSource = self
         
-        categoryTextField.inputAccessoryView = toolBar
+        let categoryToolBar = UIToolbar()
+        categoryToolBar.sizeToFit()
+        
+        let categoryDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneTapped(gesture:)))
+        let categorySelectButton = UIBarButtonItem(title: "Select", style: UIBarButtonItem.Style.plain, target: self, action: #selector(selectTapped(gesture:)))
+        
+        categoryToolBar.setItems([categoryDoneButton, categorySelectButton], animated: true)
+        categoryToolBar.isUserInteractionEnabled = true
+        
+        categoryTextField.inputAccessoryView = categoryToolBar
         categoryTextField.inputView = categoryPicker
     }
     

@@ -28,7 +28,7 @@ class FilterViewController: UIViewController {
     
     var fromDatePicker: UIDatePicker?
     var toDatePicker: UIDatePicker?
-    var categoryPicker = UIPickerView()
+    var categoryPicker: UIPickerView?
     var expenseBrain = ExpenseBrain()
     
     override func viewDidLoad() {
@@ -51,18 +51,10 @@ class FilterViewController: UIViewController {
         let dateToolBar = UIToolbar()
         dateToolBar.sizeToFit()
         
-        let categoryToolBar = UIToolbar()
-        categoryToolBar.sizeToFit()
+        let dateDoneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped(gesture:)))
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped(gesture:)))
-        
-        let selectButton = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectTapped(gesture:)))
-        
-        dateToolBar.setItems([doneButton], animated: true)
-        categoryToolBar.setItems([doneButton, selectButton], animated: true)
-        
+        dateToolBar.setItems([dateDoneButton], animated: true)
         dateToolBar.isUserInteractionEnabled = true
-        categoryToolBar.isUserInteractionEnabled = true
         
         fromDateTextField.inputView = fromDatePicker
         toDateTextField.inputView = toDatePicker
@@ -71,9 +63,19 @@ class FilterViewController: UIViewController {
         toDateTextField.inputAccessoryView = dateToolBar
         
         //Set Up Category Picker
-        categoryPicker.delegate = self
-        categoryPicker.dataSource = self
+        categoryPicker = UIPickerView()
+        categoryPicker?.delegate = self
+        categoryPicker?.dataSource = self
         
+        let categoryToolBar = UIToolbar()
+        categoryToolBar.sizeToFit()
+        
+        let categoryDoneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped(gesture:)))
+        let categorySelectButton = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectTapped(gesture:)))
+        
+        categoryToolBar.setItems([categoryDoneButton, categorySelectButton], animated: true)
+        categoryToolBar.isUserInteractionEnabled = true
+
         categoryTextField.inputAccessoryView = categoryToolBar
         categoryTextField.inputView = categoryPicker
     }
@@ -153,4 +155,3 @@ extension FilterViewController: UITextFieldDelegate {
         return true
     }
 }
-
