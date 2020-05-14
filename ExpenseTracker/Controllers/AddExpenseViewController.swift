@@ -25,8 +25,9 @@ class AddExpenseViewController: UIViewController {
     var newTitle = ""
     var newAmount = ""
     var newDate = Date().timeIntervalSince1970
-    var newCategory = ""
+    var newCategories: [String] = []
     var newNote = ""
+    var currentCategoryValue = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,8 @@ class AddExpenseViewController: UIViewController {
         toolBar.sizeToFit()
         
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneTapped(gesture:)))
-        toolBar.setItems([doneButton], animated: true)
+        let addButton = UIBarButtonItem(title: "Select", style: UIBarButtonItem.Style.plain, target: self, action: #selector(selectTapped(gesture:)))
+        toolBar.setItems([doneButton, addButton], animated: true)
         toolBar.isUserInteractionEnabled = true
         
         dateTextField.inputAccessoryView = toolBar
@@ -69,15 +71,26 @@ class AddExpenseViewController: UIViewController {
         view.endEditing(true)
     }
     
+    @objc func selectTapped(gesture: UITapGestureRecognizer) {
+        
+        if newCategories.contains(currentCategoryValue) {
+            newCategories = newCategories.filter { $0 != currentCategoryValue }
+        } else {
+            newCategories.append(currentCategoryValue)
+        }
+        
+        categoryTextField.text = newCategories.joined(separator: ",")
+    }
+    
     @objc func handleDateChange(datePicker: UIDatePicker) {
         newDate = datePicker.date.timeIntervalSince1970
         dateTextField.text = expenseBrain.formatDate(date: newDate)
     }
     
     @IBAction func addExpensePressed(_ sender: Any) {
-        if newAmount != "" && newTitle != "" && newCategory != "" {
+        if newAmount != "" && newTitle != "" && newCategories != [] {
             let newAmountDouble = Double(newAmount)!
-            expense = Expense(title: newTitle, amount: newAmountDouble, date: newDate, category: newCategory, notes: newNote)
+            expense = Expense(title: newTitle, amount: newAmountDouble, date: newDate, category: newCategories.joined(separator: ","), notes: newNote)
             
             let databaseManager = DatabaseManager()
             databaseManager.addExpenseToDb(path: K.dbFilePath, expense: expense)
@@ -102,8 +115,8 @@ extension AddExpenseViewController: UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        categoryTextField.text = expenseBrain.categories[row]
-        newCategory = categoryTextField.text!
+        let rowText = expenseBrain.categories[row]
+        currentCategoryValue = rowText
     }
 }
 
